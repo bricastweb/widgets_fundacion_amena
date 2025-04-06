@@ -1,0 +1,232 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.valores-fundacion {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 15px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.valores-fundacion h2 {
+    color: #0067B9;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.valores-fundacion h2::after {
+    content: "";
+    display: block;
+    width: 70px;
+    height: 3px;
+    background: linear-gradient(90deg, #FE5000, #7FADE3);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+.valores-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    justify-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+.valor-card {
+    background: white;
+    border-radius: 10px;
+    padding: 30px 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border-top: 4px solid;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 240px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Fondo colorido suave (8% opacidad) */
+.valor-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    opacity: 0.08;
+    z-index: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Barra inferior animada */
+.valor-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color1), var(--color2));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: right;
+    z-index: 1;
+}
+
+/* Asignación de colores */
+.valor-card:nth-child(1) { 
+    border-top-color: #0067B9;
+    --color1: #0067B9;
+    --color2: #7FADE3;
+    --bg-color: #0067B9;
+}
+.valor-card:nth-child(2) { 
+    border-top-color: #FE5000;
+    --color1: #FE5000;
+    --color2: #7FADE3;
+    --bg-color: #FE5000;
+}
+.valor-card:nth-child(3) { 
+    border-top-color: #7FADE3;
+    --color1: #7FADE3;
+    --color2: #0067B9;
+    --bg-color: #7FADE3;
+}
+.valor-card:nth-child(4) { 
+    border-top-color: #7A7A7A;
+    --color1: #7A7A7A;
+    --color2: #0067B9;
+    --bg-color: #7A7A7A;
+}
+
+/* Contenido sobre el fondo */
+.valor-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Contenedor del ícono */
+.icono-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+}
+
+/* Íconos */
+.valor-icono {
+    font-size: 2.5rem;
+    transition: all 0.3s ease;
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+/* Colores de íconos */
+.valor-card:nth-child(1) .valor-icono { color: #0067B9; }
+.valor-card:nth-child(2) .valor-icono { color: #FE5000; }
+.valor-card:nth-child(3) .valor-icono { color: #7FADE3; }
+.valor-card:nth-child(4) .valor-icono { color: #7A7A7A; }
+
+.valor-card h3 {
+    color: #333;
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+    text-align: center;
+    width: 100%;
+}
+
+.valor-card p {
+    color: #555;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 0 auto;
+    max-width: 200px;
+    transition: color 0.3s ease;
+    text-align: center;
+}
+
+/* Efectos hover */
+.valor-card:hover .icono-container {
+    transform: rotate(8deg) scale(1.15);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.valor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.valor-card:hover::before {
+    opacity: 0.12;
+}
+
+.valor-card:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* ------------------------------- */
+/* RESPONSIVE */
+/* ------------------------------- */
+@media (max-width: 1024px) {
+    .valores-grid {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 700px;
+        gap: 15px;
+    }
+    
+    .valor-card {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .valores-grid {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+        gap: 15px;
+    }
+    
+    .valor-card {
+        padding: 20px 15px;
+        max-width: 100%;
+    }
+    
+    .icono-container {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .valor-icono {
+        font-size: 2rem;
+    }
+    
+    .valores-fundacion h2 {
+        margin-bottom: 30px;
+    }
+}
